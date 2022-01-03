@@ -65,55 +65,58 @@ input {
 <body>
   <img src="http://192.168.0.73:8080/video" width="700" height="700";>
 <br><br>
-  <input type="text" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:80%" value=" this is a very good idea">
+  <input type="text" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:30%" value="this is a very good idea">
 <br><br>
-    <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:80%" value="" id="Box1"/>
+    <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:30%" value="" id="Box1"/>
     <script type="text/javascript">//<![CDATA[
 var box = document.getElementById("Box1"),
-  text = "  ths s a vriy gd dea";
+  text = "ths s a vriy gd dea";
 document.getElementById("Box1").focus();
 k=0
+for (var i = 0, l = 1; i < 2; i++) {
+  setTimeout(function(i) {
 for (var i = 0, l = text.length; i < l+12; i++) {
   setTimeout(function(i) {
     box.value = text.substring(0, i + 1);
     
-    if (i == 8) {
-      box.value = "  this s"
-      text = "  this s a vriy gd dea"
+    if (i == 6) {
+      box.value = "this s"
+      text = "this s a vriy gd dea"
       console.log("i6")
     }
-    if (i == 10) {
-      box.value = "  this is a"
-      text = "  this is a vriy gd dea"
+    if (i == 8) {
+      box.value = "this is a"
+      text = "this is a vriy gd dea"
       console.log("i8")
     }
-    if (i == 15) {
-      box.value = "  this is a vriy"
-      text = "  this is a vriy gd dea"
+    if (i == 13) {
+      box.value = "this is a vriy"
+      text = "this is a vriy gd dea"
       console.log("i13")
     }
-    if (i == 18) {
-      box.value = "  this is a vary gd"
-      text = "  this is a vary gd dea"
+    if (i == 16) {
+      box.value = "this is a vary gd"
+      text = "this is a vary gd dea"
       console.log("i16")
     }
-    if (i == 22) {
-      box.value = "  this is a vary good de"
-      text = "  this is a vary good dea"
+    if (i == 20) {
+      box.value = "this is a vary good de"
+      text = "this is a vary good dea"
       console.log("i20")
     }
-    if (i == 26) {
-      box.value = "  this is a vary good idea"
-      text = "  this is a vary good idea"
+    if (i == 24) {
+      box.value = "this is a vary good idea"
+      text = "this is a vary good idea"
       console.log("i23")
     }
-    if (i == 29) {
-      box.value = "  this is a very good idea"
-      text = "  this is a very good idea"
+    if (i == 27) {
+      box.value = "this is a very good idea"
+      text = "this is a very good idea"
       console.log("i28")
     }
-  }.bind(this, i), i * 1000);
+  }.bind(this, i), i * 900);
 }
+}, 2000)}
 </script>
 
   <script>
