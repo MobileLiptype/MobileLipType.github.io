@@ -1,19 +1,12 @@
-
 <!DOCTYPE html>
-<!--
- *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree.
--->
-<html>
-<head>
-
-
-
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <style>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/w3.css">
+        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+        <!-- <title>WebSocket Web Client</title> -->
+        <style>
     pre { align:center;color: #000; white-space: pre-wrap; word-wrap: break-word; text-shadow: 0 0 10px #ccc; }
     #log1 { align:center;background-color:#D6EAF8;}
 /*  #log3{ align:center;color: #fff; white-space: pre-wrap; word-wrap: break-word; text-shadow: 0 0 10px #ccc; background-color: white;} */
@@ -30,7 +23,7 @@
 input {
   /*animation: blink-empty 1s infinite;*/
   /*border-left: transparent solid 1px;*/
-  margin: auto;
+  margin: 5px;
   /*color: black;*/
   border-top-style: hidden;
   border-right-style: hidden;
@@ -48,177 +41,273 @@ input {
     outline: none;
   }
   </style>
-  <script>
-  // log events as they happen
-function log(message) {
-    document.getElementById("log").textContent += message+"\n";
-}
-  </script>
-  <script src="https://chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+    </head>
+    <body>
+        
 
-    <meta charset="utf-8">
-    <meta name="description" content="Lip Reading">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
-    <meta itemprop="description" content="Client-side WebRTC code samples">
-    <meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
-    <meta itemprop="name" content="Lip Reading">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta id="theme-color" name="theme-color" content="#ffffff">
-
-    <base target="_blank">
-
-    <title>Lip Reading</title>
-
-    <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../../css/main.css">
-
-</head>
-
-<body>
-
-
-   
-
-<div style="text-align:center">
-    <!-- <div id="result2" style="text-align:center"></div></div> -->
- <!-- <pre id="log1" style="text-align: center;" value=""></pre> -->
-<!--   <pre id="log3" style="text-align: center;"></pre> -->
-  <!-- <pre id="log2" style="text-align: center;"></pre> -->
-  <img src="http://192.168.0.73:8080/video" width="700" height="700";>
+        
+        <img src="http://192.168.0.73:8080/video" width="700" height="700";> 
   <br><br>
-  <input type="text" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%" value="" id="Box2">
-<br><br>
-    <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%;" onfocus="this.value=''" value="" id="Box1"/>
-  
-  <pre id="input" style="text-align: center;"></pre>
 
+        <input type="text" class="item-input" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%;caret-color: transparent;" value="" id="Box2">
+        <br><br>
+    <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:100%;caret-color: transparent;" onfocus="this.value=''" value="" id="Box1"/>
+    <pre id="messages" style="width: 90%; margin-left: 5%; height: 200px; overflow: scroll">
+        </pre>
+        <!-- <input type="text" id="messageBox" placeholder="Type your message here" 
+            style="display: block; width: 90%; margin-bottom: 10px; margin-left: 5%; padding: 10px;" />
+        <button id="send" title="Send Message!" style="width: 90%; margin-left: 5%; height: 30px;">
+            Send Message
+        </button> -->
 
+        <script>
+            if ("WebSocket" in window) {
+                var i = 0;
+                // const sendBtn = document.querySelector('#send');
+                const input = document.querySelector('#Box2');
+                const sendBtn = document.querySelector('#Box1');
+                const messages = document.querySelector('#messages');
+                // const messageBox = document.querySelector('#messageBox');
+                
+                function showMessage(message) {
+                    // messages.textContent += `\n${message}`;
+                    // messages.scrollTop = messages.scrollHeight;
+                    // messageBox.value = '';
+                    // var newtext = "this is a very good idea"//new value
+     input.value = `${message}`;
+                }
+                function showMessage1(message) {
+                    // messages.textContent += `\n${message}`;
+                    // messages.scrollTop = messages.scrollHeight;
+                    // messageBox.value = '';
+                    // var newtext = `${data}`//new value
+     sendBtn.value = `${message}`;
+                }
 
+                let ws = new WebSocket("ws://localhost:8082");
 
+                ws.onopen = function() {
+                    console.log("Connected to Server"); 
+                };
 
+                // sendBtn.onclick = function() {
+                //     if (ws) {
+                //         // ws.send(messageBox.value);
+                //         showMessage(`ME: ${messageBox.value}`);
+                //     } else {
+                //         alert("ERROR: Not connected... refresh to try again!");
+                //     }
+                // }
 
-    </div>
-
-</div>
-
-<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-<script src="js/main.js"></script>
-
-<script src="../../../js/lib/ga.js"></script>
-<script>
-
-  var b = Bugout("lip");
-  var i=0;
-  b.on("message", function(address, message) {
-    var image = document.getElementById('myImage');
-    // if(message=="Gray") image.src = "gray.gif";
-    // else if(message=="Red") image.src = "red.gif";
-    // else{
-  i=i+1;
-  console.log("message",message)
-var box = document.getElementById("Box1"),
-  text = message
-  var box2 = document.getElementById("Box2"),
-  text = message
-// document.getElementById("Box1").focus();
-// console.log(text.substring(0, 2))
-k=0
-console.log(i)
-  if(i%2==0){
-    console.log("h1")
-      for (var n = 0, l = 1; n < 2; n++) {
+                ws.onmessage = function ({data}) { 
+                    i=i+1;
+                    k=0;
+                    if(i%2==0){
+text = `${data}`
+var box = document.getElementById("Box1");
+for (var n = 0, l = 1; n < 2; n++) {
   setTimeout(function(n) {
-for (var m = 0, l = text.length; m < l+12; m++) {
+for (var m = 0, l = text.length; m < l+3; m++) {
   setTimeout(function(m) {
     box.value = text.substring(0, m + 1);
-    
-    if (m == 6) {
-      box.value = "this s"
+    if (m == 0) {
+      var input = document.getElementById("Box1");
+    input.value = "the";
+    input.setSelectionRange(1, 3); // Highlights "Cup"
+    input.focus();
+      // box.value = final_str
+      text = "ths s a vriy gd dea"
+      console.log("i6")
+    }
+
+    if (m == 1) {
+      var input = document.getElementById("Box1");
+    input.value = "the";
+    input.setSelectionRange(2, 3); // Highlights "Cup"
+    input.focus();
+      // box.value = final_str
+      text = "ths s a vriy gd dea"
+      console.log("i6")
+    }
+
+    if (m == 2) {
+      var input = document.getElementById("Box1");
+    input.value = "ths";
+    // input.setSelectionRange(2, 3); // Highlights "Cup"
+    // input.focus();
+      // box.value = final_str
+      text = "ths s a vriy gd dea"
+      console.log("i6")
+    }
+
+    if (m == 3) {
+      var input = document.getElementById("Box1");
+    input.value = "this ";
+    // input.setSelectionRange(2, 3); // Highlights "Cup"
+    // input.focus();
+      // box.value = final_str
       text = "this s a vriy gd dea"
       console.log("i6")
     }
-    if (m == 8) {
-      box.value = "this is a"
+
+
+    if (m == 4) {
+      // document.getElementById("Box1").style.color = red;
+      var input = document.getElementById("Box1");
+    input.value = "this said";
+    input.setSelectionRange(6, 9); // Highlights "Cup"
+    input.focus();
+      text = "this s a vriy gd dea"
+      console.log("i6")
+    }
+    if (m == 5) {
+      // document.getElementById("Box1").style.color = red;
+      var input = document.getElementById("Box1");
+    input.value = "this is ";
+    // input.setSelectionRange(6, 9); // Highlights "Cup"
+    // input.focus();
+      text = "this is a vriy gd dea"
+      console.log("i6")
+    }
+    if (m == 6) {
+      var input = document.getElementById("Box1");
+    input.value = "this is and";
+    input.setSelectionRange(9, 11); // Highlights "Cup"
+    input.focus();
       text = "this is a vriy gd dea"
       console.log("i8")
     }
-    if (m == 13) {
-      box.value = "this is a vriy"
+    if (m == 7) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a ";
       text = "this is a vriy gd dea"
       console.log("i13")
     }
-    if (m == 16) {
-      box.value = "this is a vary gd"
+
+if (m == 8) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a view";
+    input.setSelectionRange(11, 14); // Highlights "Cup"
+    input.focus();
+      text = "this is a vriy gd dea"
+      console.log("i8")
+    }
+if (m == 9) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vr";
+      text = "this is a vriy gd dea"
+      console.log("i13")
+    }
+    if (m == 10) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vri";
+      text = "this is a vriy gd dea"
+      console.log("i13")
+    }
+    if (m == 11) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vriy";
+      text = "this is a vriy gd dea"
+      console.log("i13")
+    }
+
+    if (m == 12) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary ";
       text = "this is a vary gd dea"
       console.log("i16")
     }
-    if (m == 20) {
-      box.value = "this is a vary good de"
+    if (m == 13) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary get";
+    input.setSelectionRange(16, 18); // Highlights "Cup"
+    input.focus();
+      text = "this is a vary gd dea"
+      console.log("i20")
+    }
+    if (m == 14) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary gd";
+      text = "this is a vary gd dea"
+      console.log("i13")
+    }
+    if (m == 15) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good ";
+      text = "this is a vary good dea"
+      console.log("i16")
+    }
+    if (m == 16) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good day";
+    input.setSelectionRange(21, 23); // Highlights "Cup"
+    input.focus();
       text = "this is a vary good dea"
       console.log("i20")
     }
-    if (m == 24) {
-      box.value = "this is a vary good idea"
+    if (m == 17) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good device";
+    input.setSelectionRange(22, 26); // Highlights "Cup"
+    input.focus();
+      text = "this is a vary good dea"
+      console.log("i20")
+    }
+
+    if (m == 18) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good deal";
+    input.setSelectionRange(23, 25); // Highlights "Cup"
+    input.focus();
+      text = "this is a vary good dea"
+      console.log("i20")
+    }
+
+    if (m == 19) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good idea";
       text = "this is a vary good idea"
-      console.log("i23")
+      console.log("i16")
     }
-    if (m == 27) {
-      box.value = "this is a very good idea"
+    if (m == 20) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a vary good idea";
+      text = "this is a vary good idea"
+      console.log("i16")
+    }
+    if (m == 21) {
+      var input = document.getElementById("Box1");
+    input.value = "this is a very good idea";
       text = "this is a very good idea"
-      console.log("i28")
+      console.log("i16")
     }
-  }.bind(this, m), m * 700);
+   
+    
+  }.bind(this, m), m * 900);
 }
 }, 1000)}
 
-  }
-  else{
-    console.log("h2")
-      box2.value = message;
-      box.value= "";
-
-  }
-
-    
-  });
-  // var b1 = Bugout("lip1");
- 
-  // b1.on("message", function(address, message) {
-  //   log(hi);
-  // });
-
-  document.getElementById("input").onkeydown = function(ev) {
-    if (ev.keyCode == 13) {
-      if (b.lastwirecount) {
-        b.send(ev.target.textContent);
-        ev.target.textContent = "";
-      }
-
-     
-    }
-    // if (ev.keyCode == 38) {
-    //   if (b1.lastwirecount) {
-    //     b1.send(" ");
-    //     ev.target.textContent = "";
-    //   }
-    
-     
-    // }
-  }
-
-</script>
-<!-- <script>
-    // tell the embed parent frame the height of the content
-    if (window.parent && window.parent.parent){
-      window.parent.parent.postMessage(["resultsFrame", {
-        height: document.body.getBoundingClientRect().height,
-        slug: "ke420boz"
-      }], "*")
-    }
-    window.name = "result"
-  </script> -->
 
 
-</body>
+
+
+
+                    // showMessage1(`${data}`)
+                    console.log(`YOU: ${data}`)
+}
+else{
+ showMessage(`${data}`)
+                    console.log(`YOU: ${data}`)   
+}
+}
+                ws.onclose = function() { 
+                    ws = null;
+                    alert("Connection closed... refresh to try again!"); 
+                };
+
+            } else {
+                alert("WebSocket NOT supported by your Browser!");
+            }
+        </script>
+    </body>
 </html>
