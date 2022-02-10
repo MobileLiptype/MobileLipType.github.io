@@ -1,6 +1,11 @@
 const WebSocket = require("ws");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-const wss = new WebSocket.Server({ port: 8082 });
+const wss = new WebSocket.Server({ port: port });
+// const wss = new WebSocket.Server({ port: 8082 });
 
 wss.getUniqueID = function () {
     function s4() {
