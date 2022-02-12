@@ -1,137 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./assets/w3.css">
-        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
-        <title>WebSocket Web Client</title>
-    </head>
-    <body>
-        
+<html>
 
-        <pre id="messages" style="width: 90%; margin-left: 5%; height: 200px; overflow: scroll">
+  <head>
+    <title> Chat </title>
+    
+    <style>
+    
+      * {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+    
+      .header-area {
+        height: 6%;
+        background: rgb(0 127 255);
+        box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+        color: white;
+        padding: 4px;
+      }
+      
+      .message-area {
+        height: 80%;
+        padding: 3px;
+        overflow: auto;
+      }
+      
+      .typing-area {
+        margin-top: 4px;
+        padding: 4px;
+        height: 8%;
+      }
+      
+      .typing-box {
+        width: 10%;
+        height: 100%;
+        resize: none;
+        padding: 3px;
+        visibility: hidden;
+      }
+      
+      .send-button {
+        border: 0;
+        width: 9%;
+        background: rgb(0 127 255);
+        color: white;
+        padding: 8px;
+        font-size: 18px;
+        position: absolute;
+        margin: 1px 12px;
+      }
+      .send-button1 {
+        border: 0;
+        width: 9%;
+        background: rgb(0 127 255);
+        color: white;
+        padding: 8px;
+        font-size: 18px;
+        position: absolute;
+        margin: 6px 22px;
+      }
+      .message-box {
+        margin-top: 10px;
+      }
+      
+      /*.others-message-box {
+      }*/
+      
+      .my-message-box {
+        text-align: right;
+        background: white;
+      }
+      
+      .message {
+        max-width: 70%;
+        border-radius: 5%;
+        padding: 5px;
+        box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.2), 0 0 1rem rgba(0, 0, 0, 0.2);
+      }
+      
+      .my-message {
+        float: right;
+        background: rgb(0 127 255);
+        color: white;
+      }
+      
+      /*.others-message {
+        float: left;
+        background: white;
+      }*/
+      
+      .separator {
+        width: 100%;
+        height: 8px;
+        float: left;
+      }
+    
+    </style>
+  </head>
+  
+  <body>
+  
+    <!-- <div class="header-area">
+      <h1> Codeboard Global Chat </h1>
+    </div> -->
+    
+    <!-- <div class="message-area" id="message-area"> -->
+      <!-- <div class="message-box others-message-box">
+        <div class="message others-message"> Hi, How are you? </div>
+        <div class="separator"></div>
+      </div>
+      
+      <div class="message-box my-message-box">
+        <div class="message my-message"> I am good, how are you doing? </div>
+        <div class="separator"></div>
+      </div> -->
+    
+    <input type="text" class="item-input" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%;caret-color: transparent;" value="" id="Box2">
+        <br><br>
+    <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:100%;caret-color: transparent;" onfocus="this.value=''" value="" id="Box1"/>
+    <pre id="messages" style="width: 90%; margin-left: 5%; height: 200px; overflow: scroll">
         </pre>
-        <input type="text" id="messageBox" placeholder="Type your message here" 
-            style="display: block; width: 90%; margin-bottom: 10px; margin-left: 5%; padding: 10px;" />
-        <!-- <button id="send" title="Send Message!" style="width: 90%; margin-left: 5%; height: 30px;">
-            Send Message
-        </button> -->
-        <!-- <button id="sendnew" title="this" style="width: 90%; margin-left: 5%; height: 30px;">
-            this
-        </button> -->
-
-        <div class="row">
-        <div class="column">
-            <h2>Input</h2>
+    
+    <div class="typing-area">
+      <textarea class="typing-box" id="typing-box"></textarea>
       <ol>
             <li><p><input type="text" size="30" value="this is a very good idea">
-          <button id="button1">Send</button>
+          <button onclick="sendMessage()"> Send </button>
           </p></li>
-
-          <li><p><input type="text" size="30" value="my watch fell in the water">
-          <button id="button2">Send</button>
-          </p></li>
-      
-      </ol>
-        </div>
-        <div class="column">
-      <h2>Output</h2>
-      <ol>
-            <li><p><input type="text" size="30" value="ths s a vriy gd dea">
-          <button id="buttonn1">Send</button>
-          </p></li>
-          <li><p><input type="text" size="30" value="mi wtch fel in the water">
-          <button id="buttonn2">Send</button>
-          </p></li>
+          <br>
+          <li><p><input type="text" size="30" value="ths s a vriy gd dea">
+<button onclick="sendMessage1()"> Send </button>          </p></li>
+ <br>
+<li><p><input type="text" size="30" value="my watch fell in the water">
+<button onclick="sendMessage2()"> Send </button>          </p></li>
+ <br>
+<li><p><input type="text" size="30" value="mi wtch fel in the water">
+<button onclick="sendMessage3()"> Send </button>          </p></li>
       
       
       </ol>
-        </div>
+     
+      
     </div>
+    <!-- </div> -->
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+    <script>
+      
+      var socket;
+      window.onload = function() {
+        
+        // socket = io.connect('http://localhost:3000');
+        socket = io.connect('https://lipreadingapp.herokuapp.com/', { transports: ['websocket', 'polling', 'flashsocket'] });
+        const input = document.querySelector('#Box2');
+        socket.on(function(message){
+          var html =  message
+          html = "this is a very good idea"
+          // document.getElementById("message-area").innerHTML += html;
+          input.value = html;
+        })
+      }
+    
+      function sendMessage() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
 
-        <script>
-            if ("WebSocket" in window) {
-                
-                const sendBtn1 = document.querySelector('#button1');
-                const sendBtn2 = document.querySelector('#buttonn1');
-                const sendBtn3 = document.querySelector('#button2');
-                const sendBtn4 = document.querySelector('#buttonn2');
-                const messages = document.querySelector('#messages');
-                const messageBox = document.querySelector('#messageBox');
-                
-                function showMessage(message) {
-                    var newtext = "this is a very good idea"//new value
-     sendBtn1.value = newtext;
-                }
-function showMessage1(message) {
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "this is a very good idea"
+              input.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+      function sendMessage1() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
 
-                    var newtext = "ths s a vriy gd dea"//new value
-     sendBtn2.value = newtext;
-                }
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "ths s a vriy gd dea"
+              input1.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+      function sendMessage2() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
 
-                function showMessage2(message) {
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "my watch fell in the water"
+              input.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+      function sendMessage3() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
 
-                    var newtext = "my watch fell in the water"//new value
-     sendBtn2.value = newtext;
-                }
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "mi wtch fel in the water"
+              input1.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+    
+    </script>
+  
+  </body>
 
-                function showMessage3(message) {
-
-                    var newtext = "mi wtch fel in the water"//new value
-     sendBtn2.value = newtext;
-                }
-                let ws = new WebSocket("ws://localhost:8082");
-
-                ws.onopen = function() {
-                    console.log("Connected to Server"); 
-                };
-
-                sendBtn1.onclick = function() {
-                    if (ws) {
-                        ws.send("this is a very good idea");
-                        showMessage(`${messageBox.value}`);
-                    } else {
-                        alert("ERROR: Not connected... refresh to try again!");
-                    }
-                }
-                sendBtn2.onclick = function() {
-                    if (ws) {
-                        ws.send("ths s a vriy gd dea");
-                        showMessage1(`${messageBox.value}`);
-                    } else {
-                        alert("ERROR: Not connected... refresh to try again!");
-                    }
-                }
-sendBtn3.onclick = function() {
-                    if (ws) {
-                        ws.send("my watch fell in the water");
-                        showMessage2(`${messageBox.value}`);
-                    } else {
-                        alert("ERROR: Not connected... refresh to try again!");
-                    }
-                }
-                sendBtn4.onclick = function() {
-                    if (ws) {
-                        ws.send("mi wtch fel in the water");
-                        showMessage3(`${messageBox.value}`);
-                    } else {
-                        alert("ERROR: Not connected... refresh to try again!");
-                    }
-                }
-
-                ws.onmessage = function ({data}) { 
-                    showMessage(`${data}`);
-                };
-
-                ws.onclose = function() { 
-                    ws = null;
-                    alert("Connection closed... refresh to try again!"); 
-                };
-
-            } else {
-                alert("WebSocket NOT supported by your Browser!");
-            }
-        </script>
-    </body>
 </html>
