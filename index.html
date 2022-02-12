@@ -84,6 +84,34 @@
         height: 8px;
         float: left;
       }
+       #input { align:center;border-bottom: 0px solid #ccc; background-color: #fff; padding: 0.25em; outline: 0; opacity:0.5;}
+    #input::before { content: ""; }
+    #image{
+            display:none;
+    input,
+/*input:focus {
+  border: none;
+}*/
+input {
+  /*animation: blink-empty 1s infinite;*/
+  /*border-left: transparent solid 1px;*/
+  margin: 5px;
+  /*color: black;*/
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  opacity: 1;
+  cursor: none;
+
+
+
+  &:focus {
+    outline: none;
+  }
     
     </style>
   </head>
