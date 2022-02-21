@@ -84,7 +84,8 @@
         height: 8px;
         float: left;
       }
-       #input { align:center;border-bottom: 0px solid #ccc; background-color: #fff; padding: 0.25em; outline: 0; opacity:0.5;}
+
+      #input { align:center;border-bottom: 0px solid #ccc; background-color: #fff; padding: 0.25em; outline: 0; opacity:0.5;}
     #input::before { content: ""; }
     #image{
             display:none;
@@ -109,11 +110,20 @@ input {
 
 
 
-  &:focus {
+  /*&:focus {
     outline: none;
-  }
+  }*/
+
     
     </style>
+    <style type="text/css">
+      div {
+  padding-left: 400px;
+  padding-top: 50px;
+  /*border: 1px solid #4CAF50;*/
+  font-size: 25px;
+}
+  </style>
   </head>
   
   <body>
@@ -121,7 +131,7 @@ input {
     <!-- <div class="header-area">
       <h1> Codeboard Global Chat </h1>
     </div> -->
-    
+   <!--  <img src="http://192.168.0.73:8080/video" style="width:50%; margin-left: 25%;";>  -->
     <div class="message-area" id="message-area">
       <!-- <div class="message-box others-message-box">
         <div class="message others-message"> Hi, How are you? </div>
@@ -132,14 +142,17 @@ input {
         <div class="message my-message"> I am good, how are you doing? </div>
         <div class="separator"></div>
       </div> -->
-           <img src="http://192.168.0.73:8080/video" width="700" height="700";> 
+      <img src="http://192.168.0.73:8080/video" width="700" height="700";> 
 
-     
-  <br><br>
-    
-    <input type="text" class="item-input" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%;caret-color: transparent;" value="" id="Box2">
+    <br><br>
+    <div>Input:</div>
+    <input type="text" class="item-input" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:50%;caret-color: transparent; margin-left: 25%;" value="" id="Box2">
         <br><br>
-    <input type="text" class="item-input" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:100%;caret-color: transparent;" value="" id="Box1"/>
+        <div> LipType Recognition:</div>
+   <input type="text" id="text-area2" type="text" STYLE="background-color:#D3D3D3;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:50%; margin-right: auto; margin-left: 25%;; margin-top: 10px ;" value="ths s a vriy gd dea"/>
+    <br><br>
+    <div> Char-LM (N-gram):</div>
+    <input type="text" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:50%;caret-color: transparent; margin-left: 25%;" onfocus="this.value=''" value="" id="Box1"/>
     <pre id="messages" style="width: 90%; margin-left: 5%; height: 200px; overflow: scroll">
         </pre>
     
@@ -203,9 +216,9 @@ for (var m = 0, l = text.length; m < l+3; m++) {
 
     if (m == 3) {
       // var input1 = document.getElementById("Box1");
-    input1.value = "this ";
-    // input1.setSelectionRange(2, 3); // Highlights "Cup"
-    // input1.focus();
+    input1.value = "this is";
+    input1.setSelectionRange(5, 7); // Highlights "Cup"
+    input1.focus();
       // box.value = final_str
       text = "this s a vriy gd dea"
       console.log("i6")
@@ -224,9 +237,9 @@ for (var m = 0, l = text.length; m < l+3; m++) {
     if (m == 5) {
       // document.getElementById("Box1").style.color = red;
       // var input1 = document.getElementById("Box1");
-    input1.value = "this is ";
-    // input1.setSelectionRange(6, 9); // Highlights "Cup"
-    // input1.focus();
+    input1.value = "this is a";
+    input1.setSelectionRange(8, 9); // Highlights "Cup"
+    input1.focus();
       text = "this is a vriy gd dea"
       console.log("i6")
     }
@@ -239,14 +252,16 @@ for (var m = 0, l = text.length; m < l+3; m++) {
       console.log("i8")
     }
     if (m == 7) {
-    input1.value = "this is a ";
+    input1.value = "this is a great";
+    input1.setSelectionRange(10, 16); // Highlights "Cup"
+    input1.focus();
       text = "this is a vriy gd dea"
       console.log("i13")
     }
 
 if (m == 8) {
-    input1.value = "this is a view";
-    input1.setSelectionRange(11, 14); // Highlights "Cup"
+    input1.value = "this is a video";
+    input1.setSelectionRange(11, 16); // Highlights "Cup"
     input1.focus();
       text = "this is a vriy gd dea"
       console.log("i8")
@@ -268,58 +283,62 @@ if (m == 9) {
     }
 
     if (m == 12) {
-    input1.value = "this is a vary ";
-      text = "this is a vary gd dea"
+    input1.value = "this is a very happy";
+    input1.setSelectionRange(15, 21); // Highlights "Cup"
+    input1.focus();
+      text = "this is a very gd dea"
       console.log("i16")
     }
     if (m == 13) {
-    input1.value = "this is a vary get";
-    input1.setSelectionRange(16, 18); // Highlights "Cup"
+    input1.value = "this is a very great";
+    input1.setSelectionRange(16, 21); // Highlights "Cup"
     input1.focus();
-      text = "this is a vary gd dea"
+      text = "this is a very gd dea"
       console.log("i20")
     }
     if (m == 14) {
-    input1.value = "this is a vary gd";
-      text = "this is a vary gd dea"
+    input1.value = "this is a very gd";
+      text = "this is a very gd dea"
       console.log("i13")
     }
     if (m == 15) {
-    input1.value = "this is a vary good ";
-      text = "this is a vary good dea"
+    input1.value = "this is a very good day";
+    input1.setSelectionRange(20, 23); // Highlights "Cup"
+    input1.focus();
+      text = "this is a very good dea"
       console.log("i16")
     }
     if (m == 16) {
-    input1.value = "this is a vary good day";
+    input1.value = "this is a very good day";
     input1.setSelectionRange(21, 23); // Highlights "Cup"
     input1.focus();
-      text = "this is a vary good dea"
+      text = "this is a very good dea"
       console.log("i20")
     }
     if (m == 17) {
-    input1.value = "this is a vary good device";
+    input1.value = "this is a very good device";
     input1.setSelectionRange(22, 26); // Highlights "Cup"
     input1.focus();
-      text = "this is a vary good dea"
+      text = "this is a very good dea"
       console.log("i20")
     }
 
     if (m == 18) {
-    input1.value = "this is a vary good deal";
+    input1.value = "this is a very good deal";
     input1.setSelectionRange(23, 25); // Highlights "Cup"
     input1.focus();
-      text = "this is a vary good dea"
+      text = "this is a very good dea"
       console.log("i20")
     }
 
     if (m == 19) {
-    input1.value = "this is a vary good idea";
-      text = "this is a vary good idea"
+    input1.value = "this is a very good idea";
+      text = "this is a very good idea"
       console.log("i16")
     }
     if (m == 20) {
-    input1.value = "this is a vary good idea";
-      text = "this is a vary good idea"
+    input1.value = "this is a very good idea";
+      text = "this is a very good idea"
       console.log("i16")
     }
     if (m == 21) {
@@ -329,7 +348,7 @@ if (m == 9) {
     }
    
     
-  }.bind(this, m), m * 700);
+  }.bind(this, m), m * 1400);
 }
 }, 1000)}
 
