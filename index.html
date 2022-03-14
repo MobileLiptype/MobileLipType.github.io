@@ -166,24 +166,16 @@ input {
     
     <script>
 
-      window.navigator = window.navigator || {};
-      
-      if (navigator.vibrate === undefined) {
-          document.getElementById('v-unsupported').classList.remove('hidden');
-          ['button-play-v-once', 'button-play-v-thrice', 'button-stop-v'].forEach(function(elementId) {
-            document.getElementById(elementId).setAttribute('disabled', 'disabled');
-          });
-      } else {
-//          window.navigator = window.navigator || {};
-      for (let i = 0; i < 50; i++) {
-        console.log(i)
-if (i==40){ 
-  console.log("here", i);
-  navigator.vibrate(1000);
-console.log("here1", i)
+      navigator.vibrate = navigator.vibrate ||
+                  navigator.webkitVibrate ||
+                  navigator.mozVibrate || 
+                  navigator.msVibrate;
+
+if (navigator.vibrate) {
+  console.log('we can vibrate');
+} else {
+  console.log('no vibration for you :-(');
 }
-}
-      }
     </script>
     
     
