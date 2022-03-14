@@ -114,37 +114,7 @@ input {
   }
     
     </style>
-    <style>
-      body
-      {
-          max-width: 500px;
-          margin: 2em auto;
-          font-size: 20px;
-      }
-      h1
-      {
-          text-align: center;
-      }
-      .hidden
-      {
-          display: none;
-      }
- 
-      .buttons-wrapper
-      {
-          text-align: center;
-      }
-      .button-demo
-      {
-          padding: 0.5em;
-          margin: 1em auto;
-      }
-      .author
-      {
-          display: block;
-          margin-top: 1em;
-      }
-    </style>
+   
 
   </head>
   
@@ -152,39 +122,6 @@ input {
     
     
     
-    <h1>Vibration API</h1>
-    <div class="buttons-wrapper">
-      <button id="button-play-v-once" class="button-demo">Vibrate Once</button>
-      <button id="button-play-v-thrice" class="button-demo">Vibrate Thrice</button>
-      <button id="button-stop-v" class="button-demo">Stop</button>
-    </div>
-    <span id="v-unsupported" class="hidden">API not supported</span>
-    <small class="author">
-      Demo created by <a href="http://www.audero.it">Aurelio De Rosa</a>
-      (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>)
-    </small>
-    
-    <script>
-
-      navigator.vibrate = navigator.vibrate ||
-                  navigator.webkitVibrate ||
-                  navigator.mozVibrate || 
-                  navigator.msVibrate;
-
-if (navigator.vibrate) {
-  console.log('we can vibrate');
-  const isMobile: () => {
-    const nav = navigator.userAgent.toLowerCase();
-    return (
-        nav.match(/iphone/i) || nav.match(/ipod/i) || nav.match(/ipad/i) || nav.match(/android/i)
-    );
-};
-
-isMobile() && window.navigator.vibrate(100);
-} else {
-  console.log('no vibration for you :-(');
-}
-    </script>
     
     
     
