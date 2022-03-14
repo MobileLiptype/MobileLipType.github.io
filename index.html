@@ -174,15 +174,15 @@ input {
             document.getElementById(elementId).setAttribute('disabled', 'disabled');
           });
       } else {
-          document.getElementById('button-play-v-once').addEventListener('click', function() {
-            navigator.vibrate(1000);
-          });
-          document.getElementById('button-play-v-thrice').addEventListener('click', function() {
-            navigator.vibrate([1000, 500, 1000, 500, 2000]);
-          });
-          document.getElementById('button-stop-v').addEventListener('click', function() {
-            navigator.vibrate(0);
-          });
+//          window.navigator = window.navigator || {};
+      for (let i = 0; i < 50; i++) {
+        console.log(i)
+if (i==40){ 
+  console.log("here", i);
+  navigator.vibrate(1000);
+console.log("here1", i)
+}
+}
       }
     </script>
     
@@ -223,15 +223,7 @@ input {
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
     <script>
       
-      window.navigator = window.navigator || {};
-      for (let i = 0; i < 50; i++) {
-        console.log(i)
-if (i==40){ 
-  console.log("here", i);
-  navigator.vibrate(1000);
-console.log("here1", i)
-}
-}
+      
       
       var socket;
       window.onload = function() {
