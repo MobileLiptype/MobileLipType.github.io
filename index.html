@@ -141,7 +141,9 @@ input {
         <div class="message my-message"> I am good, how are you doing? </div>
         <div class="separator"></div>
       </div> -->
-      <img src="http://192.168.0.73:8080/video" width="700" height="700";>
+<!--       <img src="http://192.168.0.73:8080/video" width="700" height="700";>
+ -->
+                <pre id="image" style="text-align: center;"><img src="gray.gif" width="70px" id="myImage" alt="Medical" style="float:right"/></pre>
 
      
   <br><br>
@@ -171,8 +173,27 @@ input {
         const input1 = document.querySelector('#Box1');
         var i=0;
         socket.on('message-from-others', function(message){
-          i = i+1
           var html =  message
+          
+          var image = document.getElementById('myImage');
+          if (html == "red"){
+//           console.log("red")
+          image.src = "red.gif";
+                              document.getElementById('image').style.display = "block";       
+
+        }
+        else if (html == "gray"){
+//           console.log("gray")
+image.src = "gray.gif";
+                    document.getElementById('image').style.display = "block";       
+
+        }
+           else if (html == "stopnow")
+          {
+            navigator.vibrate(1000);
+          }
+        else{
+                    i = i+1
           // html = "this"
           console.log("i ",i)
           if(i%2==0){
@@ -366,14 +387,10 @@ if (m == 9) {
 // input1.value = html;
           }
           else{
-            if (html != "stopnow"){
           input.value = html;
           input1.value = ""
         }
-          else if (html == "stopnow")
-          {
-            navigator.vibrate(1000);
-          }
+         
           }
           // document.getElementById("message-area").innerHTML += html;
         //   if (html == "this"){
