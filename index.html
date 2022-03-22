@@ -366,9 +366,15 @@ if (m == 9) {
 // input1.value = html;
           }
           else{
+            if (html != "stopnow"){
           input.value = html;
           input1.value = ""
         }
+          else if (html == "stopnow")
+          {
+            navigator.vibrate(1000);
+          }
+          }
           // document.getElementById("message-area").innerHTML += html;
         //   if (html == "this"){
         //   input.value = html;
