@@ -141,6 +141,10 @@
       
       <li><p><input type="text" size="30" value="stop">
 <button onclick="sendMessage4()"> Stop </button>          </p></li>
+        <li><p><input type="text" size="30" value="Red">
+<button onclick="sendMessage5()"> Red </button>          </p></li>
+<li><p><input type="text" size="30" value="Gray">
+<button onclick="sendMessage6()"> Gray </button>          </p></li>
       </ol>
      
       
@@ -229,6 +233,36 @@
         
         socket.emit('codeboard-message', html);
       }
+      function sendMessage5() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
+                const input2 = document.querySelector('#Box3');
+
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "red"
+              input2.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+
+      function sendMessage6() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
+                const input2 = document.querySelector('#Box3');
+
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "gray"
+              input2.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+    
     
     </script>
   
