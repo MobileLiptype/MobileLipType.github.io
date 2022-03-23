@@ -179,7 +179,9 @@ input {
           if (html == "red"){
 //           console.log("red")
           image.src = "red.gif";
-                              document.getElementById('image').style.display = "block";       
+                              document.getElementById('image').style.display = "block"; 
+                        navigator.vibrate(1000);
+
 
         }
         else if (html == "gray"){
@@ -188,10 +190,10 @@ image.src = "gray.gif";
                     document.getElementById('image').style.display = "block";       
 
         }
-           else if (html == "stopnow")
-          {
-            navigator.vibrate(1000);
-          }
+//            else if (html == "stopnow")
+//           {
+//             navigator.vibrate(1000);
+//           }
         else{
                     i = i+1
           // html = "this"
