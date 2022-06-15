@@ -118,6 +118,8 @@
     <input type="text" class="item-input" STYLE="background-color:#D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:black;width:100%;caret-color: transparent;" value="" id="Box2">
         <br><br>
     <input type="text" STYLE="background-color:#D6EAF8;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:100%;caret-color: transparent;" onfocus="this.value=''" value="" id="Box1"/>
+
+    <input type="text" STYLE="background-color:D1F2EB;text-align:center;height:100px;font-size:24pt;font-family:Courier New;color:#808080;width:50%;caret-color: transparent; margin-left: 25%;" onfocus="this.value=''" value="" id="Box3"/>
     <pre id="messages" style="width: 90%; margin-left: 5%; height: 200px; overflow: scroll">
         </pre>
     
@@ -137,6 +139,12 @@
 <li><p><input type="text" size="30" value="mi wtch fel in the water">
 <button onclick="sendMessage3()"> Send </button>          </p></li>
       
+      <li><p><input type="text" size="30" value="stop">
+<button onclick="sendMessage4()"> Stop </button>          </p></li>
+<li><p><input type="text" size="30" value="Red">
+<button onclick="sendMessage5()"> Red </button>          </p></li>
+<li><p><input type="text" size="30" value="Gray">
+<button onclick="sendMessage6()"> Gray </button>          </p></li>
       
       </ol>
      
@@ -163,6 +171,7 @@
       function sendMessage() {
                 const input = document.querySelector('#Box2');
                 const input1 = document.querySelector('#Box1');
+const input2 = document.querySelector('#Box3');
 
         var message = document.getElementById("typing-box").value;
         var html = message
@@ -179,7 +188,7 @@
 
         var message = document.getElementById("typing-box").value;
         var html = message
-        html = "tis s a vaey gud dea"
+        html = "ths s a vriy gd dea"
               input1.value = html;
         // document.getElementById("message-area").innerHTML += html;
         // document.getElementById("typing-box").value = "";
@@ -207,6 +216,51 @@
         var html = message
         html = "mi wtch fel in the water"
               input1.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+
+      function sendMessage4() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
+                const input2 = document.querySelector('#Box3');
+
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "stopnow"
+              input2.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+
+      function sendMessage5() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
+                const input2 = document.querySelector('#Box3');
+
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "red"
+              input2.value = html;
+        // document.getElementById("message-area").innerHTML += html;
+        // document.getElementById("typing-box").value = "";
+        
+        socket.emit('codeboard-message', html);
+      }
+
+      function sendMessage6() {
+                const input = document.querySelector('#Box2');
+                const input1 = document.querySelector('#Box1');
+                const input2 = document.querySelector('#Box3');
+
+        var message = document.getElementById("typing-box").value;
+        var html = message
+        html = "gray"
+              input2.value = html;
         // document.getElementById("message-area").innerHTML += html;
         // document.getElementById("typing-box").value = "";
         
