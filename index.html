@@ -181,6 +181,8 @@ input {
     <script>
       
       var socket;
+      var image = document.getElementById('myImage');
+                      document.getElementById('image').style.display = "block";   
       window.onload = function() {
         
         // socket = io.connect('http://localhost:3000');
@@ -189,8 +191,7 @@ input {
         const input1 = document.querySelector('#Box1');
         var i=0;
         socket.on('message-from-others', function(message){
-          var image = document.getElementById('myImage');
-                      document.getElementById('image').style.display = "block";       
+              
           var html =  message
 
           if (html == "red"){
