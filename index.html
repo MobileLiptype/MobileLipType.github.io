@@ -190,24 +190,38 @@ input {
         var i=0;
         socket.on('message-from-others', function(message){
           var image = document.getElementById('myImage');
+                      document.getElementById('image').style.display = "block";       
+          var html =  message
+
           if (html == "red"){
+                      console.log("2")
+
           console.log("red")
           image.src = "red.gif";
                               document.getElementById('image').style.display = "block";       
 
         }
         else if (html == "gray"){
+                    console.log("3")
+
           console.log("gray")
 image.src = "gray.gif";
                     document.getElementById('image').style.display = "block";       
 
         }
+        else if (html == "stopnow"){
+          console.log("4")
+                      navigator.vibrate(1000);
+
+        }
         else{
+                    console.log("5")
+
           i = i+1
           var html =  message
           // html = "this"
-          console.log("i ",i)
-          if(i%2==0){
+          // console.log("i ",i)
+          // if(i%2==0){
 var text = html
 for (var n = 0, l = 1; n < 2; n++) {
   setTimeout(function(n) {
@@ -224,7 +238,7 @@ if (m == 0) {
     // input1.focus();
       // box.value = final_str
       text = "tis s a vaey gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
 
     if (m == 1) {
@@ -237,7 +251,7 @@ if (m == 0) {
     // input1.focus();
       // box.value = final_str
       text = "tis s a vaey gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
 
     if (m == 2) {
@@ -250,7 +264,7 @@ if (m == 0) {
     // input1.focus();
       // box.value = final_str
       text = "tis s a vaey gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
 
 
@@ -265,7 +279,7 @@ if (m == 0) {
     // input1.focus();
       // box.value = final_str
       text = "this s a vaey gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
 
 
@@ -279,7 +293,7 @@ if (m == 0) {
     // input1.setSelectionRange(6, 9); // Highlights "Cup"
     // input1.focus();
       text = "this s a vaiy gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
     if (m == 5) {
       // document.getElementById("Box1").style.color = red;
@@ -291,7 +305,7 @@ if (m == 0) {
     // input1.setSelectionRange(8, 9); // Highlights "Cup"
     // input1.focus();
       text = "this is a vaey gud dea"
-      console.log("i6")
+      // console.log("i6")
     }
     if (m == 6) {
       // var input1 = document.getElementById("Box1");
@@ -302,7 +316,7 @@ if (m == 0) {
     // input1.setSelectionRange(9, 11); // Highlights "Cup"
     // input1.focus();
       text = "this is a vaey gud dea"
-      console.log("i8")
+      // console.log("i8")
     }
     if (m == 7) {
     // input1.value = "this is a ";
@@ -312,7 +326,7 @@ if (m == 0) {
     // input1.setSelectionRange(10, 16); // Highlights "Cup"
     // input1.focus();
       text = "this is a vaey gud dea"
-      console.log("i13")
+      // console.log("i13")
     }
 
 if (m == 8) {
@@ -323,7 +337,7 @@ if (m == 8) {
     // input1.setSelectionRange(11, 16); // Highlights "Cup"
     // input1.focus();
       text = "this is a vaey gud dea"
-      console.log("i8")
+      // console.log("i8")
     }
 if (m == 9) {
     // input1.value = "this is a value";
@@ -333,7 +347,7 @@ if (m == 9) {
     // input1.setSelectionRange(12, 16); // Highlights "Cup"
     // input1.focus();
       text = "this is a vaey gud dea"
-      console.log("i13")
+      // console.log("i13")
     }
     if (m == 10) {
     // input1.value = "this is a vae";
@@ -341,7 +355,7 @@ if (m == 9) {
   var value1 = " happy face"
   input1.innerHTML = '<span class="red">' + value + '</span>' + value1
       text = "this is a vaey gud dea"
-      console.log("i13")
+      // console.log("i13")
     }
     if (m == 11) {
     // input1.value = "this is a vaey";
@@ -349,7 +363,7 @@ if (m == 9) {
   var value1 = " great leader"
   input1.innerHTML = '<span class="red">' + value + '</span>' + value1
       text = "this is a vaey gud dea"
-      console.log("i13")
+      // console.log("i13")
     }
 
     if (m == 12) {
@@ -360,7 +374,7 @@ if (m == 9) {
     // input1.setSelectionRange(15, 21); // Highlights "Cup"
     // input1.focus();
       text = "this is a very gud dea"
-      console.log("i16")
+      // console.log("i16")
     }
     if (m == 13) {
     // input1.value = "this is a very great";
@@ -370,7 +384,7 @@ if (m == 9) {
     // input1.setSelectionRange(16, 21); // Highlights "Cup"
     // input1.focus();
       text = "this is a very gud dea"
-      console.log("i20")
+      // console.log("i20")
     }
     if (m == 14) {
     // input1.value = "this is a very guy";
@@ -380,7 +394,7 @@ if (m == 9) {
     //   input1.setSelectionRange(17, 19); // Highlights "Cup"
     // input1.focus();
       text = "this is a very gud dea"
-      console.log("i13")
+      // console.log("i13")
     }
     if (m == 15) {
     // input1.value = "this is a very gud";
@@ -390,7 +404,7 @@ if (m == 9) {
 //     input1.setSelectionRange(20, 23); // Highlights "Cup"
 //     input1.focus();
       text = "this is a very gud dea"
-      console.log("i16")
+      // console.log("i16")
     }
     if (m == 16) {
     // input1.value = "this is a very good ";
@@ -400,7 +414,7 @@ if (m == 9) {
     // input1.setSelectionRange(20, 23); // Highlights "Cup"
     // input1.focus();
       text = "this is a very good dea"
-      console.log("i16")
+      // console.log("i16")
     }
     if (m == 17) {
     // input1.value = "this is a very good day";
@@ -410,7 +424,7 @@ if (m == 9) {
     // input1.setSelectionRange(21, 23); // Highlights "Cup"
     // input1.focus();
       text = "this is a very good dea"
-      console.log("i20")
+      // console.log("i20")
     }
     
    
@@ -422,11 +436,12 @@ if (m == 9) {
 
 
 // input1.value = html;
-          }
-          else{
-          input.value = html;
-          input1.value = ""
-        }
+          
+        //   else{
+        //   input.value = html;
+        //   input1.value = ""
+        // }
+      }
           // document.getElementById("message-area").innerHTML += html;
         //   if (html == "this"){
         //   input.value = html;
