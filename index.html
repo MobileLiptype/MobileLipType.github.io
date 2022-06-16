@@ -179,20 +179,34 @@ input {
     </div>
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
     <script>
-      
+      const delay = 2;
+const limit = 2;
+let i = 1;
+          var m=0
+
+// console.log('START!');
+function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+   }
+var press = false
+
       var socket;
       var image = document.getElementById('myImage');
-                      document.getElementById('image').style.display = "block";   
+                      document.getElementById('image').style.display = "block";  
+
       window.onload = function() {
-        
+
         // socket = io.connect('http://localhost:3000');
         socket = io.connect('https://lipreadingapp.herokuapp.com/', { transports: ['websocket', 'polling', 'flashsocket'] });
         const input = document.querySelector('#Box2');
         const input1 = document.querySelector('#Box1');
         var i=0;
+
         socket.on('message-from-others', function(message){
-              
+                         async function Tutor() {
+
           var html =  message
+          console.log(html)
 
           if (html == "red"){
                       console.log("2")
@@ -211,12 +225,20 @@ image.src = "gray.gif";
                     document.getElementById('image').style.display = "block";       
 
         }
-//         else if (html == "stopnow"){
-//           console.log("4")
-//                       navigator.vibrate([1000]);
+        else if (html == "stopnow"){
+          press = true
+          console.log("4")
+          image.src = "red.gif";
+                              document.getElementById('image').style.display = "block"; 
+            navigator.vibrate([1000]);
 
-//         }
-        else{
+        }
+        else if (html == "startnow"){
+          console.log("4")
+          press=false
+image.src = "gray.gif";
+                    document.getElementById('image').style.display = "block";       
+
                     console.log("5")
 
           i = i+1
@@ -224,11 +246,16 @@ image.src = "gray.gif";
           // html = "this"
           // console.log("i ",i)
           // if(i%2==0){
-var text = html
-for (var n = 0, l = 1; n < 2; n++) {
-  setTimeout(function(n) {
-for (var m = 0, l = text.length; m < l+3; m++) {
-  setTimeout(function(m) {
+var text = "ths s a vriy gd dea"
+// for (var n = 0, l = 1; n < 2; n++) {
+//   setTimeout(function(n) {
+  console.log(m)
+// for (var m = babu, l = text.length; m < l+3; m++) {
+  while (m<(text.length+3)){
+  // setTimeout(function(m) {
+    while(press){
+            await sleep(3000);
+        }
     input1.value = text.substring(0, m + 1);
 if (m == 0) {
       // var input1 = document.getElementById("Box1");
@@ -429,11 +456,13 @@ if (m == 9) {
       // console.log("i20")
     }
     
-   
+            await sleep(700);
+            m=m+1;
+
     
-  }.bind(this, m), m * 700);
+  // }.bind(this, m), m * 700);
 }
-}, 1000)}
+// }, 1000)}
 
 
 
@@ -451,8 +480,16 @@ if (m == 9) {
         // if (html == "my"){
         //   input1.value = html;
         // }
-        })
       }
+            Tutor()
+
+        })
+
+
+
+      }
+
+
     
       // function sendMessage() {
       //   var message = document.getElementById("typing-box").value;
